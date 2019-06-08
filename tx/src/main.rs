@@ -12,8 +12,8 @@ use serialport::prelude::*;
 type PortType = Box<dyn serialport::SerialPort>; //Easier than typing the whole thing out.
 
 fn main() {
-    let matches = App::new("rbtserialcom - Upload code via serial port to a raspbootin client.")
-        .about("Upload code via serial port to a raspbootin client.")
+    let matches = App::new("rpi3serbtldr - Upload code via serial port to a rpi3serbtldr client.")
+        .about("Upload code via serial port to a rpi3serbtldr client.")
         .setting(AppSettings::DisableVersion)
         .arg(Arg::with_name("port")
              .help("The device path to a serial port eg. /dev/ttyACM0")
@@ -66,7 +66,7 @@ fn main() {
     }
 
     println!("");
-    println!("rsbtserialcom");
+    println!("rpi3serbtldr");
     println!("-------------");
     println!("File: {}", &file_name);
     println!("Port: \"{}\"", &port_name);
