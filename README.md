@@ -23,7 +23,11 @@ There were protocol features I felt were missing from raspbootin so rpi3serbtldr
 
 ### Clone
 
-Clone the repository into a local directory
+Clone the repository into a local directory:
+
+```
+$ git clone https://github.com/rahealy/rpi3serbtldr.git
+```
 
 ### Build
 
@@ -36,9 +40,9 @@ $ cd rpiserbtldr/rx
 $ cargo build
 ```
 
-### Set Up SDCard
+### Set Up SD Card
 
-Because the Broadcom chip which the RPi3 is based on was designed in a way that makes the booting process complicated I use an SDCard that has been set up with the RPi foundations official Raspbian Linux and then make alterations. Also, if you want to use Raspian again just rename some files on the card.
+The Broadcom chip which the RPi3 is based on was designed in a way that makes the booting process complicated. I use an SD card that has been set up with the RPi foundations official Raspbian Linux and then make alterations to run the rpiserbtldr_rx code instead of the Linux kernel code. An extra bonus of doing it this way is that booting Raspbian Linux is a matter of renaming files.
 
 **Install Raspian:**
 
@@ -61,6 +65,13 @@ Because the Broadcom chip which the RPi3 is based on was designed in a way that 
 **Replace kernel with receiver (rx):**
 
  * Copy rx program from build directory to "/boot/kernel8.img"
+
+**Boot Raspbian Linux Instead**
+
+ * rename "/boot/kernel.img.nope" to "/boot/kernel.img"
+ * rename "/boot/kernel7.img.nope" to "/boot/kernel7.img"
+ * rename "/boot/kernel8.img" to "/boot/kernel8.img.nope"
+
 
 ## Example Setup
 
