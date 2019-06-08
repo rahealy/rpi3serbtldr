@@ -5,12 +5,14 @@ Raspberry Pi 3 Serial Bootloader In Rust
 ## About
 This project is part of Richard's Adventures in Rust Embedded.
 
-FIXME: rx module has a sad and isn't ready for public release yet.
-FIXME: Add checksum verification to protocol.
+**FIXME:**
+
+ * rx module has a sad and isn't ready for public release yet.
+ * Add checksum verification to protocol.
 
 The repo contains two parts of a bootloader intended to assist in bare metal development on a Raspberry Pi 3. The first part is a receiver (rx) which runs on the Raspberry Pi as a bare metal application. The second part is a transmitter (tx) which runs on a PC. The bootloader uses the RPi's serial port and a simple protocol to upload a binary ARM executable file from the PC into the RPi's memory where it will be run.
 
-The bootloader started out as a raspbootin clone a described here:
+The bootloader started out as a raspbootin clone described here:
 
  * [https://wiki.osdev.org/ARM_RaspberryPi#Boot-from-serial_kernel]
  * [https://github.com/rust-embedded/rust-raspi3-OS-tutorials/tree/master/06_raspbootin64] 
@@ -36,7 +38,7 @@ $ cargo build
 
 ### Set Up SDCard
 
-Because the Broadcom chip which the RPi3 is based on was designed in a way that makes the booting process complicated I use an SDCard that has been set up with the RPi foundations official Raspbian Linux and then make alterations. In addition, if you want to use Raspian again just rename some files on the card.
+Because the Broadcom chip which the RPi3 is based on was designed in a way that makes the booting process complicated I use an SDCard that has been set up with the RPi foundations official Raspbian Linux and then make alterations. Also, if you want to use Raspian again just rename some files on the card.
 
 **Install Raspian:**
 
