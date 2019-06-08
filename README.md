@@ -28,7 +28,7 @@ $ cargo build
 
 ### Set Up SDCard
 
-Because the Broadcom chip which the RPi3 is based on was designed in a way that makes the booting process complicated I use an SDCard that has been set up with the RPi foundations official Raspbian Linux and then make alterations to simplify the process.
+Because the Broadcom chip which the RPi3 is based on was designed in a way that makes the booting process complicated I use an SDCard that has been set up with the RPi foundations official Raspbian Linux and then make alterations. In addition, if you want to use Raspian again just rename some files on the card.
 
 **Install Raspian:**
 
@@ -43,6 +43,7 @@ Because the Broadcom chip which the RPi3 is based on was designed in a way that 
 **Set RPi to enable UART for serial communication on boot:**
 
  * edit "/boot/config.txt" and add a line containing:
+ 
    ```
    enable_uart=1
    ```
