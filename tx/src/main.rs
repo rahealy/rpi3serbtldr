@@ -11,6 +11,8 @@ use serialport::prelude::*;
 
 type PortType = Box<dyn serialport::SerialPort>; //Easier than typing the whole thing out.
 
+const NUM_RETRIES: u8 = 10;
+
 fn main() {
     let matches = App::new("rpi3serbtldr - Upload code via serial port to a rpi3serbtldr client.")
         .about("Upload code via serial port to a rpi3serbtldr client.")
@@ -347,9 +349,8 @@ fn wait_for_break_signal(port: &mut PortType) -> Result< (), Error > {
 /// * `bytes` - reference to an initialed array of bytes to write.
 ///
 fn write_bytes(port: &mut PortType, bytes: &[u8] ) -> Result<(), Error> {
-    let mut retries = 10;
 
-    while retries > 0 {
+    for retries in 0..NUM_RETRIES {
         match port.write(bytes) {
             Ok(amt_wr) if amt_wr == bytes.len() => {
                 return Ok(());
@@ -362,19 +363,19 @@ fn write_bytes(port: &mut PortType, bytes: &[u8] ) -> Result<(), Error> {
             }
 
             Err(ref e) if e.kind() == ErrorKind::TimedOut => {
-                retries = retries - 1;
-                println!("Timed out while trying to write port. {} retries left.", retries);
+                print!("Timed out while trying to write port.");
             }
 
             Err(ref e) if e.kind() == ErrorKind::Interrupted => {
-                retries = retries - 1;
-                println!("Interrupted while trying to write port. {} retries left.", retries);
+                print!("Interrupted while trying to write port.");
             }
 
             Err(e) => {
                 return Err(e);
             }
         }
+
+        println!(" {} retries left.", NUM_RETRIES - retries);
     }
 
     return Err( 
@@ -401,7 +402,7 @@ fn write_bytes(port: &mut PortType, bytes: &[u8] ) -> Result<(), Error> {
 fn read_cmp_byte(port: &mut PortType, cmplst: &[u8] ) -> Result< u8, Error > {
     let mut buf: [u8; 1] = [0x00];
 
-    for retries in 0..10 {
+    for retries in 0..NUM_RETRIES {
         match port.read(&mut buf) {
             Ok(amt_rd) if amt_rd == 1 => { //Read one byte. Match to cmplst.
                 for ch in cmplst {
@@ -433,17 +434,19 @@ fn read_cmp_byte(port: &mut PortType, cmplst: &[u8] ) -> Result< u8, Error > {
             }
  
             Err(ref e) if e.kind() == ErrorKind::TimedOut => {
-                println!("Timed out while trying to read port. {} retries left.", 10 - retries);
+                print!("Timed out while trying to read port.");
             }
 
             Err(ref e) if e.kind() == ErrorKind::Interrupted => {
-                println!("Interrupted while trying to read port. {} retries left.", 10 - retries);
+                print!("Interrupted while trying to read port.");
             }
             
             Err(e) => {
                 return Err(e);
             }
         }
+
+        println!(" {} retries left.", NUM_RETRIES - retries);
     }
 
     return Err( 
