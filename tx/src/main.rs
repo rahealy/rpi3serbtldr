@@ -401,7 +401,7 @@ fn write_bytes(port: &mut PortType, bytes: &[u8] ) -> Result<(), Error> {
 fn read_cmp_byte(port: &mut PortType, cmplst: &[u8] ) -> Result< u8, Error > {
     let mut buf: [u8; 1] = [0x00];
 
-    for retries in 10..0 {
+    for retries in 0..10 {
         match port.read(&mut buf) {
             Ok(amt_rd) if amt_rd == 1 => { //Read one byte. Match to cmplst.
                 for ch in cmplst {
@@ -433,11 +433,11 @@ fn read_cmp_byte(port: &mut PortType, cmplst: &[u8] ) -> Result< u8, Error > {
             }
  
             Err(ref e) if e.kind() == ErrorKind::TimedOut => {
-                println!("Timed out while trying to read port. {} retries left.", retries);
+                println!("Timed out while trying to read port. {} retries left.", 10 - retries);
             }
 
             Err(ref e) if e.kind() == ErrorKind::Interrupted => {
-                println!("Interrupted while trying to read port. {} retries left.", retries);
+                println!("Interrupted while trying to read port. {} retries left.", 10 - retries);
             }
             
             Err(e) => {
