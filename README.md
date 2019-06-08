@@ -101,8 +101,8 @@ RPi UART0 uses 3.3v logic while the Arduino uses 5.0v logic requiring a passive 
 ```
 rpi3serbtldr/tx/target/debug$ ./rpi3serbtldr_tx -b 115200 -p "/dev/ttyACM0" -f "kernel8.img" -t 8000
 
-rpi3serbtldr
--------------
+rpi3serbtldr_tx
+---------------
 File: kernel8.img
 Port: "/dev/ttyACM0"
 Baud: 115200

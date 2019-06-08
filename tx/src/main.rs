@@ -68,8 +68,8 @@ fn main() {
     }
 
     println!("");
-    println!("rpi3serbtldr");
-    println!("-------------");
+    println!("rpi3serbtldr_tx");
+    println!("---------------");
     println!("File: {}", &file_name);
     println!("Port: \"{}\"", &port_name);
     println!("Baud: {}", &baud_rate);
