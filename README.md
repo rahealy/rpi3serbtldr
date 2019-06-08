@@ -30,24 +30,24 @@ $ cargo build
 
 Because the Broadcom chip which the RPi3 is based on was designed in a way that makes the booting process complicated I use an SDCard that has been set up with the RPi foundations official Raspbian Linux and then make alterations to simplify the process.
 
-####Install Raspian:
+**Install Raspian:**
 
  * Install Raspian Linux per instructions here: [https://www.raspberrypi.org/downloads/raspbian/]
  * Boot Rasbian Linux on the RPi to verify everything works.
 
-####Disable booting Raspbian Linux by changing kernel file names:
+**Disable booting Raspbian Linux by changing kernel file names:**
 
  * rename "/boot/kernel.img" to "/boot/kernel.img.nope"
  * rename "/boot/kernel7.img" to "/boot/kernel7.img.nope"
 
-####Set RPi to enable UART for serial communication on boot:
+**Set RPi to enable UART for serial communication on boot:**
 
  * edit "/boot/config.txt" and add a line containing:
    ```
    enable_uart=1
    ```
 
-####Replace kernel with receiver (rx):
+**Replace kernel with receiver (rx):**
 
  * Copy rx program from build directory to "/boot/kernel8.img"
 
