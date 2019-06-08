@@ -33,7 +33,7 @@ Because the Broadcom chip which the RPi3 is based on was designed in a way that 
 **Install Raspian:**
 
  * Install Raspian Linux per instructions here: [https://www.raspberrypi.org/downloads/raspbian/]
- * Boot Rasbian Linux on the RPi to verify everything works.
+ * Boot Raspbian Linux on the RPi to verify everything works.
 
 **Disable booting Raspbian Linux by changing kernel file names:**
 
