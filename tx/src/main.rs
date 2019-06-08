@@ -11,11 +11,11 @@ use serialport::prelude::*;
 
 type PortType = Box<dyn serialport::SerialPort>; //Easier than typing the whole thing out.
 
-const NUM_RETRIES: u8 = 10;
+const NUM_RETRIES: u8 = 10; //Number of times to retry a port read/write operation.
 
 fn main() {
-    let matches = App::new("rpi3serbtldr - Upload code via serial port to a rpi3serbtldr client.")
-        .about("Upload code via serial port to a rpi3serbtldr client.")
+    let matches = App::new("rpi3serbtldr_tx")
+        .about("Transmit a file via serial port to a rpi3serbtldr client.")
         .setting(AppSettings::DisableVersion)
         .arg(Arg::with_name("port")
              .help("The device path to a serial port eg. /dev/ttyACM0")
@@ -30,7 +30,7 @@ fn main() {
              .takes_value(true)
              .required(false))
         .arg(Arg::with_name("file")
-             .help("Name of file to upload eg. ./kernel8.img")
+             .help("Name of file to transmit eg. ./kernel8.img")
              .short("f")
              .use_delimiter(false)
              .takes_value(true)
