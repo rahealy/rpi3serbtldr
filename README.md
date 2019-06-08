@@ -42,7 +42,7 @@ $ cargo build
 
 ### Set Up SD Card
 
-The Broadcom chip which the RPi3 is based on was designed in a way that makes the booting process complicated. I use an SD card that has been set up with the RPi foundations official Raspbian Linux and then make alterations to run the rpiserbtldr_rx code instead of the Linux kernel code. An extra bonus of doing it this way is that booting Raspbian Linux is a matter of renaming files.
+The Broadcom chip which the RPi3 is based on was designed in a way that makes the booting process complicated. I use an SD card that has been set up with the RPi foundations official Raspbian Linux and then make alterations to which executable gets run on boot. An extra bonus of doing it this way is that booting Raspbian Linux is a matter of renaming files.
 
 **Install Raspian:**
 
@@ -68,6 +68,8 @@ The Broadcom chip which the RPi3 is based on was designed in a way that makes th
 
 **Boot Raspbian Linux Instead**
 
+If you want to boot into Linux instead just rename the files:
+
  * rename "/boot/kernel.img.nope" to "/boot/kernel.img"
  * rename "/boot/kernel7.img.nope" to "/boot/kernel7.img"
  * rename "/boot/kernel8.img" to "/boot/kernel8.img.nope"
@@ -81,7 +83,7 @@ In this example I use an Arduino Uno board with the microcontroller removed as a
 
 ### Arduino Board
 
-USB-Serial converter per suggestion to remove the ATMEL chip as described here:
+Use Arduino Uno Board as a USB->Serial converter as described here:
 
 [https://create.arduino.cc/projecthub/PatelDarshil/ways-to-use-arduino-as-usb-to-ttl-converter-475533]
 
