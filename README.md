@@ -7,7 +7,6 @@ This project is part of Richard's Adventures in Rust Embedded.
 
 **FIXME:**
 
- * rx module has a sad and isn't ready for public release yet.
  * Add checksum verification to protocol.
 
 The repo contains two parts of a bootloader intended to assist in bare metal development on a Raspberry Pi 3. The first part is a receiver (rx) which runs on the Raspberry Pi as a bare metal application. The second part is a transmitter (tx) which runs on a PC. The bootloader uses the RPi's serial port and a simple protocol to upload a binary ARM executable file from the PC into the RPi's memory where it will be run.
@@ -39,13 +38,13 @@ $ git clone https://github.com/rahealy/rpi3serbtldr.git
 
 ### Build
 
-I haven't figured out how to get cargo to only build the tx/rx subcrates from the top level. For now just run the build process from each directory. 
+I haven't figured out how to get cargo to only build the tx/rx subcrates from the top level. For now just run the build process from each directory.
 
 ```
 $ cd rpiserbtldr/tx
-$ cargo build
+$ make
 $ cd rpiserbtldr/rx
-$ cargo build
+$ make
 ```
 
 ### Set Up SD Card
@@ -72,7 +71,7 @@ The Broadcom chip which the RPi3 is based on was designed in a way that makes th
 
 **Replace kernel with receiver (rx):**
 
- * Copy rx program from build directory to "/boot/kernel8.img"
+ * Copy rpi3serbtldr_rx program from build directory to "/boot/kernel8.img"
 
 **Boot Raspbian Linux Instead**
 
