@@ -21,6 +21,14 @@ There were protocol features I felt were missing from raspbootin so rpi3serbtldr
 
 ## Installation
 
+### Dependencies
+
+Install cargo-xbuild and cargo-binutils libraries. These do most of the work to make sure the rust dependencies for generating ARM code for the RPi3 are met.
+
+```
+$ cargo install cargo-xbuild cargo-binutils
+```
+
 ### Clone
 
 Clone the repository into a local directory:
