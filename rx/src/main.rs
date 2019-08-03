@@ -43,7 +43,7 @@ global_asm!(include_str!("setup.S"));
 
 use core::panic::PanicInfo;
 
-const MMIO_BASE: u32 = 0x3F00_0000; //Used by gpio
+const MMIO_BASE: u32 = 0x3F000000; //Used by gpio
 
 mod gpio;
 mod mbox;
@@ -145,7 +145,7 @@ fn main() -> ! {
     }
 
 //Load tx'd data into memory starting at 0x80000
-    let lodptr: *mut u8 = 0x80_000 as *mut u8;
+    let lodptr: *mut u8 = 0x80000 as *mut u8;
     unsafe {
         for i in 0..sz {
             *lodptr.offset(i as isize) = uart.getc();

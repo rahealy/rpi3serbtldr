@@ -94,13 +94,13 @@ fn main() {
                                         Ok(_) => {
 //Send the contents of the file to the remote port.
                                             match send_file(&mut file, &mut port) {
-                                                Ok(_) => {
+                                                Ok(_crc) => {
 //Wait for the remote port to transmit OK signal.
                                                     match wait_for_ok_signal(&mut port) {
                                                         Ok(_) => {
                                                             println!("File sent successfully. Done.");
                                                         }
-                                                        
+
                                                         Err(e) => {
                                                             eprintln!("Send file OK signal not received. Error: {}", e);
                                                         }
@@ -145,14 +145,15 @@ fn main() {
 
 
 ///
-/// Send the contents of an open file over the port.
+/// Send the contents of an open file over the port. Return a CRC.
 ///
 /// #Arguments
 ///
 /// * `file` - an initialized and opened file.
 /// * `port` - an initialized and opened serial port to write to.
 ///
-fn send_file(file: &mut File, port: &mut PortType) -> Result <(), Error> {
+fn send_file(file: &mut File, port: &mut PortType) -> Result < u32, Error> {
+    let mut crc: u32 = 0;
     let mut buf: [u8; 1] = [0x00];
     let mut fbuf = Vec::new();
 
@@ -180,7 +181,7 @@ fn send_file(file: &mut File, port: &mut PortType) -> Result <(), Error> {
         }
     }
 
-    return Ok(());
+    return Ok(crc);  //FIXME: For now return zero for the CRC.
 }
 
 
